@@ -1,22 +1,24 @@
-export default function ProductCard({ product }) {
+export default function ProductCard({ product, onDelete, onEdit }) {
   return (
-    <div className="border rounded-lg overflow-hidden shadow hover:shadow-lg hover:scale-105 transition duration-200 bg-white">
-      
-      <img
-        src={product.image}
-        alt={product.name}
-        className="h-40 w-full object-cover"
-      />
+    <div className="bg-white shadow p-4 rounded">
+      <h2 className="text-lg font-bold">{product.name}</h2>
+      <p className="text-gray-600">${product.price}</p>
 
-      <div className="p-3">
-        <h2 className="font-semibold text-lg">{product.name}</h2>
-        <p className="text-gray-600">${product.price}</p>
+      <div className="flex gap-2 mt-3">
+        <button
+          onClick={() => onEdit(product)}
+          className="bg-blue-500 text-white px-3 py-1"
+        >
+          Edit
+        </button>
 
-        <button className="mt-3 w-full bg-blue-600 text-white py-1 rounded hover:bg-blue-700">
-          Add to Cart
+        <button
+          onClick={() => onDelete(product.id)}
+          className="bg-red-500 text-white px-3 py-1"
+        >
+          Delete
         </button>
       </div>
-
     </div>
   );
 }
